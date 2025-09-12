@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const Home = () => {
 
-	
+
 
 	const [writtingTodo, setWrittingTodo] = useState({
 		task: "",
@@ -24,8 +24,7 @@ const Home = () => {
 
 		event.preventDefault()
 
-		// if (!writtingTodo) return
-
+		if (!writtingTodo.task.trim()) return;
 
 		setTodo([
 			...todo,
@@ -37,7 +36,15 @@ const Home = () => {
 			done: "",
 		})
 
-		
+
+	}
+
+	const deleteTask = (id) => {
+		console.log(`eliminado el index ${id}`)
+
+		const newList = todo.filter((item, index) => index !== id)
+
+		setTodo(newList)
 	}
 
 
@@ -56,7 +63,7 @@ const Home = () => {
 							<input
 								type="text"
 								name="task"
-								className="form-control border-0"
+								className="letters form-control border-0 no-focus"
 								placeholder="What needs to be done?"
 								value={writtingTodo.task}
 								aria-label="Username"
@@ -67,14 +74,21 @@ const Home = () => {
 					</form>
 					<div className="col-12 col-md-7 ps-1 mt-3">{
 						todo.map((item, index) => (
-							<div key={index} className="taskToDo border-bottom d-flex justify-content-between">
-								<div>{item.task}</div>
+							<div key={index} className=" border-bottom d-flex justify-content-between ps-2">
+								<div className="letters">{item.task}</div>
 								<div className="">
-									<button type="button" className="btn-close delete-btn color-black" aria-label="Close"></button>
+									<button type="button"
+										className="btn-close delete-btn color-black no-focus"
+										onClick={() => deleteTask(index)}
+										aria-label="Close"
+									></button>
 								</div>
 							</div>
 						))
 					}
+					</div>
+					<div className="align-items-start ps-0 pt-2 ms-0">
+						{todo.length === 0 ? `Theres nothing to do, add something` : `${todo.length} items left`}
 					</div>
 				</div>
 			</div>
