@@ -50,8 +50,8 @@ const Home = () => {
 
 
 	return (
-		<div className="container">
-			<div className="row">
+		<div className="container hojita">
+			<div className="row justify-content-center">
 				<div className="titulo col-12 col-md-7 text-center">
 					<p>todos</p>
 				</div>
@@ -72,9 +72,9 @@ const Home = () => {
 							/>
 						</div>
 					</form>
-					<div className="col-12 col-md-7 ps-1 mt-3">{
+					<div className="col-12 col-md-7 ps-1 mt-3 w-100">{
 						todo.map((item, index) => (
-							<div key={index} className=" border-bottom d-flex justify-content-between ps-2">
+							<div key={index} className="taskToDo border-bottom d-flex justify-content-between align-items-center ps-2">
 								<div className="letters">{item.task}</div>
 								<div className="">
 									<button type="button"
